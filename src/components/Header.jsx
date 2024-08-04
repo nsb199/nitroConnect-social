@@ -8,7 +8,7 @@ const Header = () => {
   return (
     <header className={`header ${darkMode ? 'dark' : ''}`}>
       <div className="logo">
-        <Link to="/">NitroConnect</Link> {/* Make logo a link to the homepage */}
+        <Link to="/">NitroConnect</Link>
       </div>
       <div className="theme-toggle">
         <label className="switch">
@@ -16,11 +16,8 @@ const Header = () => {
           <span className="slider round"></span>
         </label>
       </div>
-      <nav>
-        {/* Navigation links or elements */}
-      </nav>
       <div className="home-button">
-       
+        <Link to="/">Home</Link>
       </div>
     </header>
   );

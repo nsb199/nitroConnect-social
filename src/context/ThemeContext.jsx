@@ -1,17 +1,18 @@
-import React, { createContext, useState, useContext, useEffect } from 'react';
+import React, { createContext, useContext, useState, useEffect } from 'react';
 
 const ThemeContext = createContext();
 
 export const ThemeProvider = ({ children }) => {
-  const [darkMode, setDarkMode] = useState(false);
+  const [darkMode, setDarkMode] = useState(() => {
+    // Check localStorage for saved theme preference
+    const savedTheme = localStorage.getItem('darkMode');
+    return savedTheme ? JSON.parse(savedTheme) : false;
+  });
 
   useEffect(() => {
-    // Apply or remove the dark mode class on the body element
-    if (darkMode) {
-      document.body.classList.add('dark');
-    } else {
-      document.body.classList.remove('dark');
-    }
+    // Save the theme preference to localStorage
+    localStorage.setItem('darkMode', JSON.stringify(darkMode));
+    document.body.classList.toggle('dark', darkMode);
   }, [darkMode]);
 
   const toggleDarkMode = () => {

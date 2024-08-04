@@ -1,13 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 
-const UserPosts = ({ accessKey }) => {
+const UserPosts = () => {
   const { username } = useParams();
   const [user, setUser] = useState(null);
   const [userPosts, setUserPosts] = useState([]);
   const [error, setError] = useState(null);
   const [page, setPage] = useState(1);
   const [hasMore, setHasMore] = useState(true);
+
+  const accessKey = 'KrUhD5M3eO2kEwZswYnHlbPPERwImtqKI0DVBr00-YU'; // Directly included API key
 
   useEffect(() => {
     // Fetch user details
@@ -59,13 +61,6 @@ const UserPosts = ({ accessKey }) => {
   };
 
   if (error) return <div className="error">Error: {error}</div>;
-
-  const getMemberSinceYear = (dateString) => {
-    console.log("Received date string:", dateString); // Log the date string for debugging
-    const date = new Date(dateString);
-    console.log("Parsed date:", date); // Log the parsed date for debugging
-    return isNaN(date.getFullYear()) ? 'Unknown' : date.getFullYear();
-  };
 
   return (
     <div className="user-posts">

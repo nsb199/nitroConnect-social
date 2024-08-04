@@ -5,14 +5,15 @@ import Post from './components/Post';
 import UserPosts from './components/UserPosts';
 import { ThemeProvider } from './context/ThemeContext';
 
+const API_KEY = 'KrUhD5M3eO2kEwZswYnHlbPPERwImtqKI0DVBr00-YU'; // Directly include API key
+
 const App = () => {
   const [posts, setPosts] = useState([]);
   const [page, setPage] = useState(1);
   const [error, setError] = useState(null);
-  const accessKey = import.meta.env.VITE_UNSPLASH_ACCESS_KEY;
 
   const fetchPosts = (page) => {
-    fetch(`https://api.unsplash.com/search/photos?query=animals&client_id=${accessKey}&per_page=10&page=${page}`)
+    fetch(`https://api.unsplash.com/search/photos?query=animals&client_id=${API_KEY}&per_page=10&page=${page}`)
       .then(response => response.json())
       .then(data => {
         setPosts(prevPosts => [...prevPosts, ...data.results]);
@@ -25,7 +26,7 @@ const App = () => {
 
   useEffect(() => {
     fetchPosts(page);
-  }, [page, accessKey]);
+  }, [page]);
 
   const handleLoadMore = () => {
     setPage(prevPage => prevPage + 1);
@@ -65,7 +66,7 @@ const App = () => {
             />
             <Route 
               path="/user/:username" 
-              element={<UserPosts accessKey={accessKey} />} 
+              element={<UserPosts accessKey={API_KEY} />} 
             />
           </Routes>
         </main>
