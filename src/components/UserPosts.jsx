@@ -88,12 +88,13 @@ const UserPosts = () => {
       <h2 className="posts-heading">All Posts by {user ? user.name : username}</h2>
       <div className="user-images">
         {userPosts.map((post, index) => (
-          <img
-            key={index}
-            src={post.urls.small}
-            alt={post.alt_description || 'User photo'}
-            className="user-image"
-          />
+          <a key={index} href={post.urls.regular} target="_blank" rel="noopener noreferrer">
+            <img
+              src={post.urls.small}
+              alt={post.alt_description || 'User photo'}
+              className="user-image"
+            />
+          </a>
         ))}
       </div>
       {hasMore && (

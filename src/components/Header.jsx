@@ -17,7 +17,7 @@ const Header = () => {
         </label>
       </div>
       <div className="home-button">
-        <Link to="/">Home</Link>
+    
       </div>
     </header>
   );
